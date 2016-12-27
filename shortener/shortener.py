@@ -11,7 +11,7 @@ import wwparser
 # --------
 
 # Set the configuration file name
-CONFIG = wwparser.parse('shortener.ini')
+CONFIG = wwparser.parse('./resources/shortener.ini')
 
 CON_INFO = CONFIG['server']
 API_KEY = CON_INFO['API_KEY']
@@ -32,12 +32,16 @@ def shortener_api_request(url):
     req = 'https://shortener.godaddy.com/v1/?apikey={key}&domain={domain}&url={url}'
     req = req.format(key=API_KEY, domain=DOMAIN, url=url)
     
+    # API closed the connection. For GoDaddy's URL shortening API, this means the request failed.
+    # For all APIs, this COULD mean that the user isn't connected to the internet or DNS
+    # is being DNS.
+    try:
+        r = requests.get(req)
+        return r.status_code, r.text
+        
+    except requests.exceptions.ConnectionError:
+        return 422, ''
     
-    r = requests.get(req)
-    # print('No internet connection found')
-    
-    return r.status_code, r.text
- 
 # -----
 def _shorten(handle):
     """
@@ -82,7 +86,7 @@ def _run_gui():
     # GUI handler
     # ---
     
-    icon = 'shortener.ico'  # Path to tray icon
+    icon = './resources/shortener.ico'  # Path to tray icon
     hover_text = 'WinterWing URL Shortener'  # Label that appears on hover
 
     # ---
