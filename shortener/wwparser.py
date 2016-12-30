@@ -24,9 +24,8 @@ def parse(file='config.ini'):
         for line in f.readlines():
             line = line.strip()
             
-            if len(line) == 0 or line[0] in ['#', '\n']:  # Skip comments and blank lines
+            if len(line) == 0 or line[0] in ['#', '']:  # Skip comments and blank lines
                 continue
-
             # Set our position back to the beginning of the store and
             # prep for new entries
             if line[0] == '[':
