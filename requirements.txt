@@ -1,0 +1,2 @@
+pyperclip==1.5.27
+pywin32==2.2.0
