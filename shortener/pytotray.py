@@ -2,8 +2,8 @@
 #   Create a Windows tray icon and hook the menu options to Python functions
 #
 #   Based on Simon Brunning's SysTrayIcon and Mark Hammond's win32gui_taskbar
-#   Heavily cleaned up, modified, and un-bullshitted by Luke Jones
-#
+#   Cleaned up, modified, lost, found, subjected to public inquiry, lost again,
+#   and finally buried in soft peat for three months.
 #   Luke Jones, 2016; Simon Brunning; Mark Hammond
 # ------
          
